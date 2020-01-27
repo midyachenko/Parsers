@@ -1,3 +1,4 @@
+# coding: utf8
 import requests, time,csv
 from bs4 import  BeautifulSoup as bs
 
@@ -67,7 +68,11 @@ def files_writer(jobs):
         a_pen=csv.writer(file)
         a_pen.writerow(('Название вакансии', 'Название компании', 'Описание', 'Требования', 'URL' ))
         for job in jobs:
-            a_pen.writerow((job['title'], job['company'],job['resp'], job['rec'], job['href']))
+            try:
+                a_pen.writerow((job['title'], job['company'],job['resp'], job['rec'], job['href']))
+            except:
+                pass
+
 
 
 jobs=hh_parse(base_url, headers)
